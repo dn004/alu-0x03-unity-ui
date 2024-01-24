@@ -64,16 +64,17 @@ public class PlayerController : MonoBehaviour
             //Debug.Log("Game Over!");
 
             WinLoseBG.gameObject.SetActive(true);
-            Invoke("RestartGame", 3f);
+            StartCoroutine(LoadSceneAfterDelay(3f));
         }
     }
 
-    void RestartGame()
+    IEnumerator LoadSceneAfterDelay(float seconds)
     {
+        yield return new WaitForSeconds(seconds);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         health = 5;
         score = 0;
-        WinLoseBG.gameObject.SetActive(false);
+        WinLoseBG.gameObject.SetActive(false); // Deactivate WinLoseBG after restarting
     }
 
 
