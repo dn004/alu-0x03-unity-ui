@@ -10,7 +10,9 @@ public class PlayerController : MonoBehaviour
     public int health = 5;
     private int score = 0;
     public Text scoreText;
-
+    public Text healthText;
+    public Text WinLoseText;
+    public Image WinLoseBG;
     void Start()
     {
 
@@ -40,13 +42,14 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("Trap"))
         {
-            health--;
-            Debug.Log("Health: " + health);
+            SetHealthText();
+            //Debug.Log("Health: " + health);
         }
 
         if (other.CompareTag("Goal"))
         {
-            Debug.Log("You win!");
+            SetWinText();
+            //Debug.Log("You win!");
         }
 
     }
@@ -56,7 +59,8 @@ public class PlayerController : MonoBehaviour
     {
         if (health == 0)
         {
-            Debug.Log("Game Over!");
+            SetLoseText();
+            //Debug.Log("Game Over!");
 
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             
@@ -73,4 +77,25 @@ public class PlayerController : MonoBehaviour
  
 
     }
+
+    void SetHealthText()
+    {
+        health --;
+        healthText.text = "Health: " + health.ToString();
+    }
+
+    void SetWinText()
+    {
+        WinLoseText.text = "You Win!";
+        WinLoseText.color = Color.black;
+        WinLoseBG.color = Color.green;
+    }
+
+    void SetLoseText()
+    {
+        WinLoseText.text = "Game Over!";
+        WinLoseText.color = Color.white;
+        WinLoseBG.color = Color.red;
+    }
+    
 }
