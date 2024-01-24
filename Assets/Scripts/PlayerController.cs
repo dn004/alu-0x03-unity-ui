@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
             SetWinText();
             WinLoseBG.gameObject.SetActive(true);
             //Debug.Log("You win!");
+            StartCoroutine(LoadSceneAfterDelay(3f));
         }
 
     }
