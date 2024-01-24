@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Goal"))
         {
             SetWinText();
+            WinLoseBG.gameObject.SetActive(true);
             //Debug.Log("You win!");
         }
 
@@ -62,11 +63,17 @@ public class PlayerController : MonoBehaviour
             SetLoseText();
             //Debug.Log("Game Over!");
 
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            
-            health = 5;
-            score = 0;
+            WinLoseBG.gameObject.SetActive(true);
+            Invoke("RestartGame", 3f);
         }
+    }
+
+    void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        health = 5;
+        score = 0;
+        WinLoseBG.gameObject.SetActive(false);
     }
 
 
