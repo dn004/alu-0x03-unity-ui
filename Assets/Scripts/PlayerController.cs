@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody rb;
     public float speed = 1000f;
     public int health = 5;
     private int score = 0;
+    public Text scoreText;
 
     void Start()
     {
@@ -29,8 +31,8 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Pickup")){
 
-				score ++;
-				Debug.Log("Score: " + score);
+				SetScoreText();
+				//Debug.Log("Score: " + score);
 
 				Destroy(other.gameObject);
 
@@ -61,5 +63,14 @@ public class PlayerController : MonoBehaviour
             health = 5;
             score = 0;
         }
+    }
+
+
+    void SetScoreText()
+    {
+        score ++;
+        scoreText.text = "Score: " + score.ToString();
+ 
+
     }
 }
